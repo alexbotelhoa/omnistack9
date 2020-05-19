@@ -1,3 +1,7 @@
+#Outros
+backup/
+omnistack*
+
 # Logs
 logs
 *.log
