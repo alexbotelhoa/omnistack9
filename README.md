@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="Aircnc" title="#aircnc" src=".github/logo.png" width="250px" />
+    <img alt="Aircnc" title="#aircnc" src="https://user-images.githubusercontent.com/44276302/82373099-6e02c780-99f3-11ea-80c3-7885792a71cc.png" width="250px" />
 </h1>
 
 <h4 align="center">
@@ -32,7 +32,7 @@
 <br>
 
 <p align="center">
-  <img alt="Frontend" src=".github/aircnc.png" width="100%">
+  <img alt="Frontend" src="https://user-images.githubusercontent.com/44276302/82372999-4875be00-99f3-11ea-8709-d184d8f16b5e.png" width="100%">
 </p>
 
 ## :rocket: Tecnologias
