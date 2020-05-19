@@ -1,5 +1,9 @@
 module.exports = {
     index(req, res) {
-        return res.send('Controller')
+        const teste = {
+            teste: 'teste'
+        }
+
+        return res.json(teste)
     }
 }
