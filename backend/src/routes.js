@@ -7,6 +7,6 @@ routes.get('/', (req, res) => {
     return res.send('Hellow World')
 })
 
-routes.get('/teste', TesteController.index);
+routes.get('/user', TesteController.index);
 
 module.exports = routes;
