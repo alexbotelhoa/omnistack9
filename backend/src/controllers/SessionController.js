@@ -1,9 +1,17 @@
-module.exports = {
-    index(req, res) {
-        const teste = {
-            teste: 'teste'
-        }
+const User = require('../models/User')
 
-        return res.json(teste)
+module.exports = {
+    async index(req, res) {
+        const users = await User.find().sort('-createdAt')
+        return res.json(users)
+     },
+
+    async store(req, res) {
+        const { email } = req.body
+
+        let user = await User.findOne({ email })
+        if (!user) user = await User.create({ email })
+
+        return res.json(user)
     }
 }
