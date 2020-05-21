@@ -1,13 +1,18 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom'
 
+import './App.css';
 import Routes from './routes'
+import logo from './assets/logo.svg';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes />
-    </BrowserRouter>
+    <div className="container">
+      <img src={logo} alt="AirCnC" />
+
+      <div className="content">
+        <Routes />
+      </div>
+    </div>
   );
 }
 
