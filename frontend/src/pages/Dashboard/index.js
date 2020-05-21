@@ -1,15 +1,22 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import socketio from 'socket.io-client'
+import api from '../../services/api'
 
 import './styles.css';
-import api from '../../services/api'
 
 export default function Dashboard() {
     const [spots, setSpots] = useState([])
+    const [requests, setRequests] = useState([])
+
+    const user_id = localStorage.getItem('user')
+
+    const socket = useMemo(() => socketio('http://192.168.1.101:3333', {
+        query: { user_id },
+      }), [user_id])
 
     async function loadSpots() {
-        const user_id = localStorage.getItem('user')
+        // const user_id = localStorage.getItem('user')
         const res = await api.get('/dashboard', {
           headers: { user_id }
         })
@@ -17,17 +24,32 @@ export default function Dashboard() {
         setSpots(res.data)
     }
 
+    async function handleAccept(id) {
+        await api.post(`/bookings/${id}/approvals`);
 
+        setRequests(requests.filter(request => request._id !== id));
+    }
+
+    async function handleReject(id) {
+        await api.post(`/bookings/${id}/rejections`);
+
+        setRequests(requests.filter(request => request._id !== id));
+    }
+
+    useEffect(() => {
+        socket.on('booking_request', data => {
+          setRequests([...requests, data]);
+        })
+      }, [requests, socket]);
 
 
     useEffect(() => {     
         loadSpots()
       }, [])
 
-
     return (
         <>
-            {/* <ul className="notifications">
+            <ul className="notifications">
                 {requests.map(request => (
                 <li key={request._id}>
                     <p>
@@ -37,7 +59,7 @@ export default function Dashboard() {
                     <button className="reject" onClick={() => handleReject(request._id)}>REJEITAR</button>
                 </li>
                 ))}
-            </ul> */}
+            </ul>
             
             <ul className="spot-list">
                 {spots.map(spot => (
