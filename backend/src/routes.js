@@ -13,13 +13,14 @@ const BookingController = require('./controllers/BookingController')
 routes.get('/', (req, res) => res.send('Ok!'))
 
 /**
- * GET     /                 ->  index
- * GET     /new              ->  new
- * POST    /                 ->  create
- * GET     /:id              ->  show
- * GET     /:id/edit         ->  edit
- * PUT     /:id              ->  update
- * DELETE  /:id              ->  destroy
+ * routes.resource('rota', require('./RotaController')) //
+ * GET     /rota/                 ->  index
+ * GET     /rota/new              ->  new
+ * POST    /rota/                 ->  create
+ * GET     /rota/:id              ->  show
+ * GET     /rota/:id/edit         ->  edit
+ * PUT     /rota/:id              ->  update
+ * DELETE  /rota/:id              ->  destroy
  * */
 routes.resource('sessions', SessionController)
 

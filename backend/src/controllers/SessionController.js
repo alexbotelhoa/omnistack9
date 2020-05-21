@@ -6,7 +6,7 @@ module.exports = {
         return res.json(users)
      },
 
-    async store(req, res) {
+    async create(req, res) {
         const { email } = req.body
 
         let user = await User.findOne({ email })
