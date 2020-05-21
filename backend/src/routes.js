@@ -13,7 +13,7 @@ const BookingController = require('./controllers/BookingController')
 routes.get('/', (req, res) => res.send('Ok!'))
 
 /**
- * routes.resource('rota', require('./RotaController')) //
+ * routes.resource('rota', require('./RotaController'))
  * GET     /rota/                 ->  index
  * GET     /rota/new              ->  new
  * POST    /rota/                 ->  create
