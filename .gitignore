@@ -1,7 +1,12 @@
-#Outros
+#Particular
 backup/
 omnistack*
 uploads/
+*.code-workspace
+*.keystore
+.git*
+*.code-workspace
+*.psd
 
 # Logs
 logs
