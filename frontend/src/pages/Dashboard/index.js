@@ -16,7 +16,7 @@ export default function Dashboard() {
       }), [user_id])
 
     async function loadSpots() {
-        // const user_id = localStorage.getItem('user')
+        const user_id = localStorage.getItem('user')
         const res = await api.get('/dashboard', {
           headers: { user_id }
         })
@@ -27,13 +27,13 @@ export default function Dashboard() {
     async function handleAccept(id) {
         await api.post(`/bookings/${id}/approvals`);
 
-        setRequests(requests.filter(request => request._id !== id));
+        setRequests(requests.filter(req => req._id !== id));
     }
 
     async function handleReject(id) {
         await api.post(`/bookings/${id}/rejections`);
 
-        setRequests(requests.filter(request => request._id !== id));
+        setRequests(requests.filter(req => req._id !== id));
     }
 
     useEffect(() => {
@@ -42,7 +42,6 @@ export default function Dashboard() {
         })
       }, [requests, socket]);
 
-
     useEffect(() => {     
         loadSpots()
       }, [])
@@ -50,13 +49,13 @@ export default function Dashboard() {
     return (
         <>
             <ul className="notifications">
-                {requests.map(request => (
-                <li key={request._id}>
+                {requests.map(req => (
+                <li key={req._id}>
                     <p>
-                    <strong>{request.user.email}</strong> está solicitando uma reserva em <strong>{request.spot.company}</strong> para a data: <strong>{request.date}</strong>
+                    <strong>{req.user.email}</strong> está solicitando uma reserva em <strong>{req.spot.company}</strong> para a data: <strong>{req.date}</strong>
                     </p>
-                    <button className="accept" onClick={() => handleAccept(request._id)}>ACEITAR</button>
-                    <button className="reject" onClick={() => handleReject(request._id)}>REJEITAR</button>
+                    <button className="accept" onClick={() => handleAccept(req._id)}>ACEITAR</button>
+                    <button className="reject" onClick={() => handleReject(req._id)}>REJEITAR</button>
                 </li>
                 ))}
             </ul>

@@ -25,7 +25,7 @@ app.use((req, res, next) => {
    req.io = io
    req.connectedUsers = connectedUsers
 
-   return next()
+   next()
 })
 
 app.use(cors())
