@@ -1,11 +1,9 @@
 #Particular
+*/uploads/*
 backup/
-omnistack*
-uploads/
+docs/
 *.code-workspace
 *.keystore
-.git*
-*.code-workspace
 *.psd
 
 # Logs
@@ -112,3 +110,4 @@ dist
 
 # TernJS port file
 .tern-port
+
