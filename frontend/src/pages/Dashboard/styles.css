@@ -47,6 +47,14 @@ ul.spot-list {
     margin-top: 10px;
     cursor: pointer;
   }
+
+  ul.notifications li buttonCancel {
+    margin-right: 10px;
+    border: 0;
+    font-weight: bold;
+    margin-top: 10px;
+    cursor: pointer;
+  }
   
   ul.notifications li button.accept {
     color: #84C870;

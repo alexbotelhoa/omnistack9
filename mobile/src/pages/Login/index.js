@@ -7,7 +7,7 @@ import logo from '../../assets/logo.png';
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('alexbotelho1@hotmail.com');
-  const [techs, setTechs] = useState('NodeJS, ReactJS, React Native');
+  const [techs, setTechs] = useState('TartaJS');
 
   async function handleSubmit() {
     const res = await api.post('/sessions', {
