@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, Alert, TextInput, TouchableOpacity, AsyncStorage, Text } from 'react-native';
 
+import styles from './styles';
 import api from '../services/api';
 
 export default function Book({ navigation }) {
