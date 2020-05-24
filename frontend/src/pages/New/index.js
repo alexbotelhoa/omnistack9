@@ -1,9 +1,8 @@
 import React, { useState, useMemo } from 'react';
-import api from '../../services/api';
-
-import camera from '../../assets/camera.svg';
 
 import './styles.css';
+import api from '../../services/api';
+import camera from '../../assets/camera.svg';
 
 export default function New({ history }) {
   const [thumbnail, setThumbnail] = useState(null);

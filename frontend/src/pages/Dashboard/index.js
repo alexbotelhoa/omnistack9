@@ -72,9 +72,6 @@ export default function Dashboard() {
             <Link to="/new">
                 <button className="btn">Cadastrar novo spot</button>
             </Link>
-            <Link to="/">
-                <button className="btn">Logout</button>
-            </Link>
         </>
     )
 }
