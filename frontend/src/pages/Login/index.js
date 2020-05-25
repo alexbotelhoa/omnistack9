@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import api from '../../services/api';
 
 export default function Login({ history }) {
-  const [email, setEmail] = useState('marcelbotelho1@hotmail.com');
+  const [email, setEmail] = useState('');
 
   async function handleSubmit(e) {
     e.preventDefault();

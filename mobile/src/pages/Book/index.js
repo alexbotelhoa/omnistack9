@@ -5,7 +5,7 @@ import styles from './styles';
 import api from '../../services/api';
 
 export default function Book({ navigation }) {
-  const [date, setDate] = useState('05/10/2020');
+  const [date, setDate] = useState('');
   const id = navigation.getParam('id');
 
   async function handleSubmit() {

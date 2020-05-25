@@ -6,8 +6,8 @@ import styles from './styles';
 import logo from '../../assets/logo.png';
 
 export default function Login({ navigation }) {
-  const [email, setEmail] = useState('alexbotelho1@hotmail.com');
-  const [techs, setTechs] = useState('TartaJS');
+  const [email, setEmail] = useState('');
+  const [techs, setTechs] = useState('');
 
   async function handleSubmit() {
     const res = await api.post('/sessions', {
