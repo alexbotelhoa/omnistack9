@@ -1,35 +1,35 @@
 <h1 align="center">
-    <img alt="Aircnc" title="#aircnc" src="https://user-images.githubusercontent.com/44276302/82373099-6e02c780-99f3-11ea-80c3-7885792a71cc.png" width="250px" />
+    <img alt="Aircnc" title="#aircnc" src="https://user-images.githubusercontent.com/44276302/82373099-6e02c780-99f3-11ea-80c3-7885792a71cc.png" width="250px" /><br>☕ Code and coffee
 </h1>
 
 <h4 align="center">
-  ☕ Code and coffee
+  🚀 Semana OmniStack 9.0
 </h4>
-<p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Rocketseat/semana-omnistack-9.svg">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Rocketseat/semana-omnistack-9.svg">
+<p align="center">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/alexbotelhoa/omnistack9">
+
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/alexbotelhoa/omnistack9">
   
-  <a href="https://github.com/Rocketseat/semana-omnistack-9/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Rocketseat/semana-omnistack-9.svg">
+  <a href="https://github.com/alexbotelhoa/omnistack9/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/alexbotelhoa/omnistack9">
   </a>
 
-  <a href="https://github.com/Rocketseat/semana-omnistack-9/issues">
-    <img alt="Repository issues" src="https://img.shields.io/github/issues/Rocketseat/semana-omnistack-9.svg">
+  <a href="https://github.com/alexbotelhoa/omnistack9/issues">
+    <img alt="Repository issues" src="https://img.shields.io/github/issues/alexbotelhoa/omnistack9">
   </a>
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
 </p>
 
 <p align="center">
-  <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-como-contribuir">Como contribuir</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#memo-licença">Licença</a>
+    <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#computer-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#computer_mouse-backend">Backend</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#computer-frontend">Frontend</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#iphone-mobile">Mobile</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#memo-licença">Licença</a>
 </p>
-
-<br>
 
 <p align="center">
   <img alt="Frontend" src="https://user-images.githubusercontent.com/44276302/82372999-4875be00-99f3-11ea-8709-d184d8f16b5e.png" width="100%">
@@ -37,37 +37,69 @@
 
 ## :rocket: Tecnologias
 
-Esse projeto foi desenvolvido com as seguintes tecnologias:
+:point_down: Esse projeto foi desenvolvido com as seguintes tecnologias: :point_down:
 
-- [Node.js](https://nodejs.org/en/)
-- [React](https://reactjs.org)
-- [React Native](https://facebook.github.io/react-native/)
-- [Expo](https://expo.io/)
+-  [Node.js](https://nodejs.org/en/)
+-  [Express](https://expressjs.com/)
+-  [nodemon](https://github.com/remy/nodemon)
+-  [MongoDB](https://mongodb.com)
+-  [Mongoose](https://mongoosejs.com/)
+-  [Multer](https://github.com/expressjs/multer)
+-  [Socket.io](https://socket.io/)
+-  [Cors](https://github.com/expressjs/cors)
+-  [ReactJS](https://reactjs.org/)
+-  [Axios](https://github.com/axios/axios)
+-  [React Router](https://github.com/ReactTraining/react-router)
+-  [VS Code](https://code.visualstudio.com/)
+-  [React Native](https://reactnative.dev/)
+-  [React Expo](https://expo.io/)
+-  [React Navigation](https://reactnavigation.org/)
+-  [React Location](https://docs.expo.io/versions/latest/sdk/location)
 
-## 💻 Projeto
+## :computer: Projeto
 
 O Aircnc é um projeto que visa conectar empresas que querem abrir spots e desenvolvedores que procuram um lugar para trocar ideias com devs, conhecer a empresa e trabalhar lá por um período.
+## :information_source: Desenvolvimento
 
-## 🔖 Layout
+### :computer_mouse: Backend: 
 
-Você pode baixar o layout do projeto no formato `.sketch` através [desse link](https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/semana-omnistack/aircnc.sketch).
+```bash
+# Clone o Repositório
+$  git clone https://github.com/alexbotelhoa/omnistack9.git
+# Va até o diretório do backend, e instale suas dependências
+$ cd omnistack/backend
+# Instale as dependências
+$ yarn 
+# Rode o backend 
+$ yarn dev 
+```
 
-Para abrir o arquivo no formato `.sketch` em qualquer sistema operacional utilize a ferramenta [Zeplin](https://zeplin.io).
+### :computer: Frontend: 
 
-## 🤔 Como contribuir
+```bash
+#Vá até a pasta frontend 
+$ cd frontend 
+#Instale as dependências
+$ yarn 
+#Inicie a aplicação 
+$ yarn start
+```
 
-- Faça um fork desse repositório;
-- Cria uma branch com a sua feature: `git checkout -b minha-feature`;
-- Faça commit das suas alterações: `git commit -m 'feat: Minha nova feature'`;
-- Faça push para a sua branch: `git push origin minha-feature`.
+### :iphone: Mobile:
 
-Depois que o merge da sua pull request for feito, você pode deletar a sua branch.
+```bash
+#Vá até a pasta mobile 
+$ cd mobile 
+#Instale as dependências
+$ yarn 
+# Android 
+$ react-native run-android
+#iOS 
+$ react-native run-ios
+```
 
 ## :memo: Licença
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
 
 ---
-
-Feito com ♥ by Rocketseat :wave: [Entre na nossa comunidade!](https://discordapp.com/invite/gCRAFhc)
-
