@@ -67,11 +67,11 @@ O Aircnc é um projeto que visa conectar empresas que querem abrir spots e desen
 # Clone o Repositório
 $  git clone https://github.com/alexbotelhoa/omnistack9.git
 # Va até o diretório do backend, e instale suas dependências
-$ cd omnistack/backend
+$ cd backend
 # Instale as dependências
 $ yarn 
 # Rode o backend 
-$ yarn dev 
+$ yarn start 
 ```
 
 ### :computer: Frontend: 
