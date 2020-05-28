@@ -7,9 +7,9 @@
 </h4>
 
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/alexbotelhoa/omnistack9">
-
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/alexbotelhoa/omnistack9">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/alexbotelhoa/omnistack9?color=ff0000"> 
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/alexbotelhoa/omnistack9?color=%23F7DF1E">
+  <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/alexbotelhoa/omnistack9">
   
   <a href="https://github.com/alexbotelhoa/omnistack9/commits/master">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/alexbotelhoa/omnistack9">
