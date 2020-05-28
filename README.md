@@ -28,7 +28,13 @@
     <a href="#computer_mouse-backend">Backend</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#computer-frontend">Frontend</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#iphone-mobile">Mobile</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-    <a href="#memo-licença">Licença</a>
+    <a href="#memo-licença">Licença</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="https://www.linkedin.com/in/alex-botelho-almeida/">
+      <img src="https://img.icons8.com/color/24/000000/linkedin.png"/>
+    </a>
+    <a href="https://www.youtube.com/channel/UC6N_L0nZWRjcym8bnChKppw/">
+      <img src="https://img.icons8.com/color/24/000000/youtube-play.png"/>
+    </a>
 </p>
 
 <p align="center">
