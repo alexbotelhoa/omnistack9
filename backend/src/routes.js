@@ -28,6 +28,7 @@ routes.resource('sessions', SessionController)
 
 routes.get('/spots', SpotController.index)
 routes.post('/spots', upload.single('thumbnail'), SpotController.store)
+routes.delete('/spots/:spot_id', SpotController.delete);
 
 routes.get('/dashboard', DashboardController.show)
 

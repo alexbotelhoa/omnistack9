@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 
 import './styles.css';
 import api from '../../services/api';
@@ -33,41 +34,51 @@ export default function New({ history }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label 
-        id="thumbnail" 
-        style={{ backgroundImage: `url(${preview})` }}
-        className={thumbnail ? 'has-thumbnail' : ''}
-      >
-        <input type="file" onChange={event => setThumbnail(event.target.files[0])} />
-        <img src={camera} alt="Select img" />
-      </label>
+    <div className="containerDashboard">
+      <div className="content">
+        <form onSubmit={handleSubmit}>
+          <label 
+            id="thumbnail" 
+            style={{ backgroundImage: `url(${preview})` }}
+            className={thumbnail ? 'has-thumbnail' : ''}
+          >
+            <input type="file" onChange={event => setThumbnail(event.target.files[0])} />
+            <img src={camera} alt="Select img" />
+          </label>
 
-      <label htmlFor="company">EMPRESA *</label>
-      <input 
-        id="company"
-        placeholder="Sua empresa incrível"
-        value={company}
-        onChange={event => setCompany(event.target.value)}
-      />
+          <label htmlFor="company">EMPRESA *</label>
+          <input 
+            id="company"
+            placeholder="Sua empresa incrível"
+            value={company}
+            onChange={event => setCompany(event.target.value)}
+          />
 
-      <label htmlFor="techs">TECNOLOGIAS * <span>(separadas por vírgula)</span></label>
-      <input 
-        id="techs"
-        placeholder="Quais tecnologias usam?"
-        value={techs}
-        onChange={event => setTechs(event.target.value)}
-      />
+          <label htmlFor="techs">TECNOLOGIAS * <span>(separadas por vírgula)</span></label>
+          <input 
+            id="techs"
+            placeholder="Quais tecnologias usam?"
+            value={techs}
+            onChange={event => setTechs(event.target.value)}
+          />
 
-      <label htmlFor="price">VALOR DA DIÁRIA * <span>(em branco para GRATUITO)</span></label>
-      <input 
-        id="price"
-        placeholder="Valor cobrado por dia"
-        value={price}
-        onChange={event => setPrice(event.target.value)}
-      />
+          <label htmlFor="price">VALOR DA DIÁRIA * <span>(em branco para GRATUITO)</span></label>
+          <input 
+            id="price"
+            placeholder="Valor cobrado por dia"
+            value={price}
+            onChange={event => setPrice(event.target.value)}
+          />
 
-      <button type="submit" className="btn">Cadastrar</button>
-    </form>
+          <div className="btnNavegacao">
+              <button type="submit" className="btn">Salvar</button>
+            <Link to="/dashboard">
+              <button className="btn" onClick={() => {}}>Voltar</button>
+            </Link>
+          </div>
+
+        </form>
+      </div>
+    </div>
   )
 }

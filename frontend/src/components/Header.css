@@ -1,0 +1,9 @@
+.header {
+    margin: 30px auto 0;
+    background: transparent;
+    border: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }

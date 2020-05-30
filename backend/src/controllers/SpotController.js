@@ -27,5 +27,19 @@ module.exports = {
          })
 
         return res.json(spot)
+    },
+
+    async delete(req, res) {
+        const { spot_id } = req.params;
+        const user_id = req.headers.authorization;
+
+        await Spot.deleteOne({ 
+            _id: spot_id,
+            user: user_id
+         }, function (err) {
+            if (err) return handleError(err);
+          });
+
+        return res.status(204).send();
     }
 }
