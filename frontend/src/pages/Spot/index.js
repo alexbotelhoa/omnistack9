@@ -6,10 +6,12 @@ import api from '../../services/api';
 import camera from '../../assets/camera.svg';
 
 export default function New({ history }) {
+  const [spots, setSpots] = useState([]);
   const [thumbnail, setThumbnail] = useState(null);
   const [company, setCompany] = useState('');
   const [techs, setTechs] = useState('');
   const [price, setPrice] = useState('');
+  const user_id = localStorage.getItem('user');
 
   const preview = useMemo(() => {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
@@ -19,19 +21,30 @@ export default function New({ history }) {
     e.preventDefault();
 
     const data = new FormData();
-    const user_id = localStorage.getItem('user');
 
     data.append('thumbnail', thumbnail);
     data.append('company', company);
     data.append('techs', techs);
     data.append('price', price);
 
-    await api.post('/spots', data, {
-      headers: { user_id }
-    })
+    // await api.post('/spots', data, {
+    //   headers: { user_id }
+    // })
 
     history.push('/dashboard');
   }
+
+  async function loadSpots() {
+    const { spot_id } = req.params
+
+    const res = await api.get(`/spots/${spot_id}/edit`, {
+      headers: { user_id }
+    })
+
+    setSpots(res.data)
+  }
+
+  loadSpots()
 
   return (
     <div className="containerDashboard">
@@ -42,7 +55,9 @@ export default function New({ history }) {
             style={{ backgroundImage: `url(${preview})` }}
             className={thumbnail ? 'has-thumbnail' : ''}
           >
-            <input type="file" onChange={event => setThumbnail(event.target.files[0])} />
+            <input 
+              type="file" 
+              onChange={event => setThumbnail(event.target.files[0])} />
             <img src={camera} alt="Select img" />
           </label>
 

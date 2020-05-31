@@ -29,6 +29,41 @@ module.exports = {
         return res.json(spot)
     },
 
+    async edit(req, res) {
+        const { spot_id } = req.params
+
+        const spot = await Spot.findById(spot_id)
+
+        return res.json(spot)
+    },
+
+    async update(req, res) {
+        const { company, price, techs } = req.body
+        const { filename } = req.file
+        const { user_id } = req.headers
+        const { spot_id } = req.params
+        const { teste } = req.query
+
+        // console.log(teste)
+
+        const spot = {
+            thumbnail: filename,
+            company, 
+            price, 
+            techs: techs.split(',').map(tech => tech.trim()),
+            user: user_id,
+            spot: spot_id,
+            teste: teste,
+         }
+
+        // console.log(company, price, techs)
+        // console.log(filename)
+        // console.log(user_id)
+        // console.log(spot_id)
+
+        return res.json(spot)
+    },
+
     async delete(req, res) {
         const { spot_id } = req.params;
         const user_id = req.headers.authorization;
