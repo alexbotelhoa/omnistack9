@@ -1,9 +1,10 @@
 label#thumbnail {
+    width: 100%;
     margin-bottom: 20px;
     border: 1px dashed #ddd;
     background-size: cover;
     cursor: pointer;
-    height: 160px;
+    height: 100px;
     
     display: flex;
     justify-content: center;
@@ -16,6 +17,7 @@ label#thumbnail {
   
   label#thumbnail.has-thumbnail {
     border: 0;
+    height: 300px;
   }
   
   label#thumbnail.has-thumbnail img {

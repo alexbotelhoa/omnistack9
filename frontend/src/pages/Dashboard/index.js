@@ -32,7 +32,7 @@ export default function Dashboard() {
         }
 
         loadSpots()
-    }, [])
+    }, [user_id])
 
     async function handleAccept(id) {
         await api.post(`/bookings/${id}/approvals`);
@@ -46,26 +46,10 @@ export default function Dashboard() {
         setRequests(requests.filter(req => req._id !== id));
     }
 
-    async function handleEditSpot(id) {
-        try {
-          await api.get(`/spots/${id}`, {
-            headers: {
-              Authorization: user_id
-            }
-          });
-    
-          setSpots(spots.filter(spot => spot.id !== id))
-        } catch (err) {
-          alert('Erro ao deletar o caso, tente novamente');
-        }
-    }
-
     async function handleDeleteSpot(id) {
         try {
           await api.delete(`/spots/${id}`, {
-            headers: {
-              Authorization: user_id
-            }
+            headers: { user_id }
           });
     
           setSpots(spots.filter(spot => spot.id !== id))
@@ -106,14 +90,14 @@ export default function Dashboard() {
                                     <strong>{spot.company}</strong>
                                     <p>
                                         <span>{spot.price ? `R$${spot.price}/dia` : 'GRATUITO'}</span>
-                                        <div>
-                                            <Link to={`/spot/${spot._id}`}>
+                                        <span>
+                                            <Link to={`/spot/${spot._id}/edit`}>
                                                 <FiEdit2 size={20} color="#a8a8b3" />
                                             </Link>
                                             <button type="button" onClick={() => handleDeleteSpot(spot._id)}>
                                                 <FiTrash2 size={20} color="#a8a8b3" />
                                             </button>
-                                        </div>
+                                        </span>
                                     </p>
                                 </li>
                             ))}

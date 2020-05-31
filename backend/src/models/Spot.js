@@ -13,6 +13,7 @@ const SpotSchema = new Schema({
   toJSON: {
     virtuals: true,
   },
+    timestamps: true,
 });
     
 SpotSchema.virtual('thumbnail_url').get( function() {

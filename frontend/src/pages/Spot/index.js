@@ -1,24 +1,34 @@
-import React, { useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import './styles.css';
 import api from '../../services/api';
 import camera from '../../assets/camera.svg';
 
-export default function New({ history }) {
-  const [spots, setSpots] = useState([]);
+export default function Spot ({ history }) {
+  const [thumbnailStorage, setThumbnailStorage] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
   const [company, setCompany] = useState('');
   const [techs, setTechs] = useState('');
   const [price, setPrice] = useState('');
+  const spot_id = history.location.pathname.split('/')
   const user_id = localStorage.getItem('user');
-
-  const preview = useMemo(() => {
+  
+  let preview = useMemo(() => {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
   }, [thumbnail])
 
+  // console.log(thumbnail)
+
   async function handleSubmit(e) {
     e.preventDefault();
+
+    console.log('1', thumbnail)
+    console.log('2', company)
+    console.log('3', techs)
+    console.log('4', price)
+
+  // setThumbnail('http://192.168.1.101:3333/files/tartaruga-1590963797789.jpg')
 
     const data = new FormData();
 
@@ -27,24 +37,49 @@ export default function New({ history }) {
     data.append('techs', techs);
     data.append('price', price);
 
-    // await api.post('/spots', data, {
-    //   headers: { user_id }
-    // })
+    // console.log('data', data)
+
+    if (!spot_id[2]) {
+      console.log('API post')
+      await api.post('/spots', data, {
+        headers: { user_id }
+      })
+    } else {
+      console.log('API put')
+      await api.put(`/spots/${spot_id[2]}`, data, {
+        headers: { user_id }
+      })
+    }
 
     history.push('/dashboard');
   }
 
-  async function loadSpots() {
-    const { spot_id } = req.params
+  useEffect(() => {
+    async function loadSpot(spot_id) {
+      const res = await api.get(`/spots/${spot_id}/edit`, {
+        headers: { user_id }
+      })
 
-    const res = await api.get(`/spots/${spot_id}/edit`, {
-      headers: { user_id }
-    })
+      const { thumbnail_url, thumbnail, company, price, techs } = res.data
+     
+      setThumbnailStorage(thumbnail_url)
+      setCompany(company)
+      setTechs(techs)
+      setPrice(price)
+    }
 
-    setSpots(res.data)
+    loadSpot(spot_id[2])
+  }, []);
+
+  if (!thumbnail && thumbnailStorage) {
+    preview = thumbnailStorage
   }
 
-  loadSpots()
+  console.log('thumbnailStorage', thumbnailStorage)
+  console.log('thumbnail', thumbnail)
+  console.log('preview', preview)
+
+  // setThumbnail('http://192.168.1.101:3333/files/tartaruga-1590963797789.jpg')
 
   return (
     <div className="containerDashboard">
@@ -53,7 +88,7 @@ export default function New({ history }) {
           <label 
             id="thumbnail" 
             style={{ backgroundImage: `url(${preview})` }}
-            className={thumbnail ? 'has-thumbnail' : ''}
+            className={(thumbnail || thumbnailStorage) ? 'has-thumbnail' : ''}
           >
             <input 
               type="file" 
