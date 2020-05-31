@@ -7,9 +7,9 @@
 </h4>
 
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/alexbotelhoa/omnistack9">
-
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/alexbotelhoa/omnistack9">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/alexbotelhoa/omnistack9?color=ff0000"> 
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/alexbotelhoa/omnistack9?color=%23F7DF1E">
+  <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/alexbotelhoa/omnistack9">
   
   <a href="https://github.com/alexbotelhoa/omnistack9/commits/master">
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/alexbotelhoa/omnistack9">
@@ -28,7 +28,13 @@
     <a href="#computer_mouse-backend">Backend</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#computer-frontend">Frontend</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#iphone-mobile">Mobile</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-    <a href="#memo-licença">Licença</a>
+    <a href="#memo-licença">Licença</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="https://www.linkedin.com/in/alex-botelho-almeida/">
+      <img src="https://img.icons8.com/color/24/000000/linkedin.png"/>
+    </a>
+    <a href="https://www.youtube.com/channel/UC6N_L0nZWRjcym8bnChKppw/">
+      <img src="https://img.icons8.com/color/24/000000/youtube-play.png"/>
+    </a>
 </p>
 
 <p align="center">
