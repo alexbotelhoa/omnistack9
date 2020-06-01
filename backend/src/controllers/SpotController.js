@@ -39,21 +39,20 @@ module.exports = {
 
     async update(req, res) {
         const { company, price, techs } = req.body
-        // const { filename } = req.file
         const { user_id } = req.headers
         const { spot_id } = req.params
 
-        async function fileExist(file = req.file) {
-            if (true) {
-                return 'tartaruga-1590963797789.jpg'
-            } else {
+        async function fileExist() {
+            if (req.file) {
+                const { filename } = req.file
+                return filename
+            }
                 const spot = await Spot.findById(spot_id)
                 const { thumbnail } = spot
                 return thumbnail
-            }
         }
 
-        console.log('filename', fileExist())
+        // console.log('filename', fileExist())
 
         const spot = await Spot.updateOne({
             _id: spot_id,
