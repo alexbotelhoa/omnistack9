@@ -38,37 +38,40 @@ module.exports = {
     },
 
     async update(req, res) {
-        const { company, price, techs } = req.body
-        const { user_id } = req.headers
-        const { spot_id } = req.params
+        const { company, price, techs } = req.body;
+        const { user_id } = req.headers;
+        const { spot_id } = req.params;       
 
-        async function fileExist() {
+        function fileExist() {
             if (req.file) {
                 const { filename } = req.file
-                return filename
+                return ({
+                    thumbnail: filename,
+                    company, 
+                    price, 
+                    techs: techs.split(',').map(tech => tech.trim()),
+                })
+            } else {
+                return ({
+                    company, 
+                    price, 
+                    techs: techs.split(',').map(tech => tech.trim()),
+                })
             }
-                const spot = await Spot.findById(spot_id)
-                const { thumbnail } = spot
-                return thumbnail
         }
 
-        // console.log('filename', fileExist())
-
-        const spot = await Spot.updateOne({
+        await Spot.updateOne({
             _id: spot_id,
             user: user_id
-        }, {
-            thumbnail: fileExist(),
-            company, 
-            price, 
-            techs: techs.split(',').map(tech => tech.trim()),
-        }, function (err) {
+        }, 
+        fileExist(), 
+        function (err) {
             if (err) return handleError(err);
         }).set('updatedAt', new Date())
 
         return res.status(200).send()
     },
-
+    
     async delete(req, res) {
         const { spot_id } = req.params
         const { user_id } = req.headers

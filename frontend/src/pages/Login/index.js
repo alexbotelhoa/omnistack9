@@ -4,7 +4,7 @@ import './styles.css';
 import api from '../../services/api';
 
 export default function Login({ history }) {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('alexbotelho1@hotmail.com');
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -35,9 +35,9 @@ export default function Login({ history }) {
               value={email}
               onChange={event => setEmail(event.target.value)}
             />
-
             <button className="btnLogin" type="submit">Entrar</button>
           </form>
+          
         </div>
       </div>
     </>

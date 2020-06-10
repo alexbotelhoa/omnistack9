@@ -18,17 +18,8 @@ export default function Spot ({ history }) {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
   }, [thumbnail])
 
-  // console.log(thumbnail)
-
   async function handleSubmit(e) {
     e.preventDefault();
-
-    console.log('1', thumbnail)
-    console.log('2', company)
-    console.log('3', techs)
-    console.log('4', price)
-
-  // setThumbnail('http://192.168.1.101:3333/files/tartaruga-1590963797789.jpg')
 
     const data = new FormData();
 
@@ -36,8 +27,6 @@ export default function Spot ({ history }) {
     data.append('company', company);
     data.append('techs', techs);
     data.append('price', price);
-
-    // console.log('data', data)
 
     if (!spot_id[2]) {
       console.log('API post')
@@ -74,12 +63,6 @@ export default function Spot ({ history }) {
   if (!thumbnail && thumbnailStorage) {
     preview = thumbnailStorage
   }
-
-  console.log('thumbnailStorage', thumbnailStorage)
-  console.log('thumbnail', thumbnail)
-  console.log('preview', preview)
-
-  // setThumbnail('http://192.168.1.101:3333/files/tartaruga-1590963797789.jpg')
 
   return (
     <div className="containerDashboard">

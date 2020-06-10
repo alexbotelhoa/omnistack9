@@ -11,7 +11,7 @@ export default function Dashboard() {
     const [requests, setRequests] = useState([]);
     const history = useHistory()
     const user_id = localStorage.getItem('user');
-    
+
     const socket = useMemo(() => io('http://192.168.1.101:3333', {
         query: { user_id },
     }), [user_id]);
@@ -32,19 +32,19 @@ export default function Dashboard() {
         }
 
         loadSpots()
-    }, [user_id])
+    }, [user_id]);
 
     async function handleAccept(id) {
         await api.post(`/bookings/${id}/approvals`);
 
         setRequests(requests.filter(req => req._id !== id));
-    }
+    };
 
     async function handleReject(id) {
         await api.post(`/bookings/${id}/rejections`);
 
         setRequests(requests.filter(req => req._id !== id));
-    }
+    };
 
     async function handleDeleteSpot(id) {
         try {
@@ -56,7 +56,7 @@ export default function Dashboard() {
         } catch (err) {
           alert('Erro ao deletar o caso, tente novamente');
         }
-    }
+    };
 
     function handleLogout() {
         localStorage.getItem('user');
@@ -64,7 +64,7 @@ export default function Dashboard() {
         
         history.push('/');
         window.location.reload(false)
-    }
+    };
 
     return (
         <>
