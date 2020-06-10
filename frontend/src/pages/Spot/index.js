@@ -49,7 +49,7 @@ export default function Spot ({ history }) {
         headers: { user_id }
       })
 
-      const { thumbnail_url, thumbnail, company, price, techs } = res.data
+      const { thumbnail_url, company, price, techs } = res.data
      
       setThumbnailStorage(thumbnail_url)
       setCompany(company)
@@ -58,7 +58,7 @@ export default function Spot ({ history }) {
     }
 
     loadSpot(spot_id[2])
-  }, []);
+  }, [user_id, spot_id]);
 
   if (!thumbnail && thumbnailStorage) {
     preview = thumbnailStorage
