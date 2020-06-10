@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import './styles.css';
@@ -11,6 +11,7 @@ export default function Spot ({ history }) {
   const [company, setCompany] = useState('');
   const [techs, setTechs] = useState('');
   const [price, setPrice] = useState('');
+  const [load, setLoad] = useState(false);
   const spot_id = history.location.pathname.split('/')
   const user_id = localStorage.getItem('user');
   
@@ -22,43 +23,42 @@ export default function Spot ({ history }) {
     e.preventDefault();
 
     const data = new FormData();
-
     data.append('thumbnail', thumbnail);
     data.append('company', company);
     data.append('techs', techs);
     data.append('price', price);
 
-    if (!spot_id[2]) {
-      console.log('API post')
-      await api.post('/spots', data, {
-        headers: { user_id }
-      })
-    } else {
+    if (spot_id[2]) {
       console.log('API put')
       await api.put(`/spots/${spot_id[2]}`, data, {
         headers: { user_id }
       })
+    } else {
+      console.log('API post')
+      await api.post('/spots', data, {
+        headers: { user_id }
+      })      
     }
 
     history.push('/dashboard');
   }
 
-  useEffect(() => {
-    async function loadSpot(spot_id) {
-      const res = await api.get(`/spots/${spot_id}/edit`, {
-        headers: { user_id }
-      })
+  async function loadSpot() {
+    if (load || !spot_id[2]) return;
+    const res = await api.get(`/spots/${spot_id[2]}/edit`, {
+      headers: { user_id }
+    })
 
-      const { thumbnail_url, company, price, techs } = res.data
-     
-      setThumbnailStorage(thumbnail_url)
-      setCompany(company)
-      setTechs(techs)
-      setPrice(price)
-    }
-
-    loadSpot(spot_id[2])
-  }, [user_id, spot_id]);
+    const { thumbnail_url, company, price, techs } = res.data
+   
+    setThumbnailStorage(thumbnail_url)
+    setCompany(company)
+    setTechs(techs)
+    setPrice(price)
+    setLoad(true)      
+  }
+  
+  loadSpot()
 
   if (!thumbnail && thumbnailStorage) {
     preview = thumbnailStorage
