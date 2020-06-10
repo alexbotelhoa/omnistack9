@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import InputMask from 'react-input-mask';
 
 import './styles.css';
 import api from '../../services/api';
@@ -29,12 +30,10 @@ export default function Spot ({ history }) {
     data.append('price', price);
 
     if (spot_id[2]) {
-      console.log('API put')
       await api.put(`/spots/${spot_id[2]}`, data, {
         headers: { user_id }
       })
     } else {
-      console.log('API post')
       await api.post('/spots', data, {
         headers: { user_id }
       })      
@@ -64,6 +63,8 @@ export default function Spot ({ history }) {
     preview = thumbnailStorage
   }
 
+  // console.log(company.length)
+
   return (
     <div className="containerDashboard">
       <div className="content">
@@ -79,15 +80,16 @@ export default function Spot ({ history }) {
             <img src={camera} alt="Select img" />
           </label>
 
-          <label htmlFor="company">EMPRESA *</label>
+          <label htmlFor="company">EMPRESA * <span>(Limite de carateres: {company.length}/18)</span></label>
           <input 
             id="company"
+            maxLength='18'
             placeholder="Sua empresa incrível"
             value={company}
             onChange={event => setCompany(event.target.value)}
           />
 
-          <label htmlFor="techs">TECNOLOGIAS * <span>(separadas por vírgula)</span></label>
+          <label htmlFor="techs">TECNOLOGIAS * <span>(Separadas por vírgula. Limite de carateres: {techs.length}/40)</span></label>
           <input 
             id="techs"
             placeholder="Quais tecnologias usam?"
@@ -95,10 +97,11 @@ export default function Spot ({ history }) {
             onChange={event => setTechs(event.target.value)}
           />
 
-          <label htmlFor="price">VALOR DA DIÁRIA * <span>(em branco para GRATUITO)</span></label>
-          <input 
+          <label htmlFor="price">VALOR DA DIÁRIA * <span>(Deixe em branco para GRATUITO.)</span></label>
+          <InputMask 
             id="price"
             placeholder="Valor cobrado por dia"
+            type="number"
             value={price}
             onChange={event => setPrice(event.target.value)}
           />

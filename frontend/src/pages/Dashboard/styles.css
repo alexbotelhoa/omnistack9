@@ -49,11 +49,6 @@ ul.spot-list li strong {
   color: #444;
 }
 
-
-
-
-
-/* excluir */
 ul.spot-list li p {
   display: flex;
   align-items: center;
@@ -65,13 +60,9 @@ ul.spot-list li p span {
   color: #999;
 }
 
-
-
-
-/* botões */
 ul.spot-list li p button {
 background: #fff;
-right: 24px;
+/* right: 32px; */
 cursor: pointer;
 border: 0;
 }
@@ -79,10 +70,6 @@ border: 0;
 ul.spot-list li p button:hover {
 opacity: 0.8;
 }
-
-
-
-
 
 ul.notifications {
   list-style: none;
@@ -126,7 +113,7 @@ ul.notifications li button.reject {
 .btn {
   border: 0;
   border-radius: 2px;
-  width: 250px;
+  width: 330px;
   height: 42px;
   padding: 0 20px;
   font-size: 16px;
