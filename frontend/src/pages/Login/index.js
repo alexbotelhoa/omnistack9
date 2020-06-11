@@ -12,7 +12,7 @@ export default function Login({ history }) {
 
     if (email === '') return setMensage('Informe o seu e-mail!');
 
-    handleSubmit()
+    handleSubmit();
   };
 
   async function handleSubmit() {
@@ -49,7 +49,7 @@ export default function Login({ history }) {
 
         { mensage && (
           <div className="validation-container">
-            <strong className="mensage-login">{mensage}</strong>
+            <strong className="mensageError">{mensage}</strong>
             <button type="button" onClick={() => setMensage(null)}>FECHAR</button>
           </div>
         ) }

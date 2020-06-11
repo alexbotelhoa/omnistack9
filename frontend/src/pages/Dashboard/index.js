@@ -8,7 +8,6 @@ import api from '../../services/api'
 
 export default function Dashboard() {
     const [spots, setSpots] = useState([]);
-    // const [action, setAction] = useState(true);
     const [requests, setRequests] = useState([]);
     const [mensage, setMensage] = useState(null);
 
@@ -66,10 +65,9 @@ export default function Dashboard() {
             });
         
             setSpots(spots.filter(spot => spot.id !== id));
-            
             setMensage('Spot deletado com sucesso!!!');
         } catch (err) {
-            alert('Erro ao deletar o caso, tente novamente');
+            alert('Erro ao tentar deletar o spot, tente novamente!');
         }
     };
 

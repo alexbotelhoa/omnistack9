@@ -21,10 +21,18 @@ export default function Spot ({ history }) {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
   }, [thumbnail]);
 
-  async function handleSubmit(e) {
+  function checkInput(e) {
     e.preventDefault();
-    let action;
 
+    if (thumbnail === null && thumbnailStorage === null ) return setMensage('Forneça uma foto do ambiente!');
+    if (company === '') return setMensage('Informe o nome da sala!');
+    if (techs === '') return setMensage('Informe pelo menos uma tecnologia!');
+    if (price === '') return setMensage('Informe o valor diário!');
+
+    handleSubmit();
+  };
+
+  async function handleSubmit() {
     const data = new FormData();
     data.append('thumbnail', thumbnail);
     data.append('company', company);
@@ -32,20 +40,26 @@ export default function Spot ({ history }) {
     data.append('price', price);
 
     if (spot_id[2]) {
-      await api.put(`/spots/${spot_id[2]}`, data, {
-        headers: { user_id }
-      })
-      localStorage.setItem('action', 'put')
+      try {
+        await api.put(`/spots/${spot_id[2]}`, data, {
+          headers: { user_id }
+        })
+        localStorage.setItem('action', 'put');
+      } catch (err) {
+        alert('Erro ao tentar alterar o spot, tente novamente!');
+      }
     } else {
-      await api.post('/spots', data, {
-        headers: { user_id }
-      })    
-      localStorage.setItem('action', 'post')
+      try {
+        await api.post('/spots', data, {
+          headers: { user_id }
+        })    
+        localStorage.setItem('action', 'post');
+      } catch (err) {
+        alert('Erro ao tentar salvar o spot, tente novamente!');
+      }
     }
 
-    history.push(`/dashboard`, {
-      action
-    });
+    history.push(`/dashboard`);
   };
 
   async function loadSpot() {
@@ -54,17 +68,17 @@ export default function Spot ({ history }) {
       headers: { user_id }
     })
 
-    const { thumbnail_url, company, price, techs } = res.data
+    const { thumbnail_url, company, price, techs } = res.data;
    
-    setThumbnailStorage(thumbnail_url)
-    setCompany(company)
-    setTechs(techs)
-    setPrice(price)
-    setLoad(true)      
+    setThumbnailStorage(thumbnail_url);
+    setCompany(company);
+    setTechs(techs);
+    setPrice(price);
+    setLoad(true);   
   };
   
   if (!thumbnail && thumbnailStorage) {
-    preview = thumbnailStorage
+    preview = thumbnailStorage;
   };
 
   loadSpot()
@@ -72,7 +86,7 @@ export default function Spot ({ history }) {
   return (
     <div className="containerDashboard">
       <div className="content">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={checkInput}>
           <label 
             id="thumbnail" 
             style={{ backgroundImage: `url(${preview})` }}
@@ -84,29 +98,30 @@ export default function Spot ({ history }) {
             <img src={camera} alt="Select img" />
           </label>
 
-          <label htmlFor="company">EMPRESA * <span>(Limite de carateres: {company.length}/18)</span></label>
+          <label htmlFor="company">NOME DA SALA * <span>(Limite de carateres: {company.length}/18)</span></label>
           <input 
             id="company"
-            maxLength='18'
-            placeholder="Sua empresa incrível"
+            maxLength="18"
             value={company}
+            placeholder="Sua empresa incrível"
             onChange={event => setCompany(event.target.value)}
           />
 
           <label htmlFor="techs">TECNOLOGIAS * <span>(Separadas por vírgula. Limite de carateres: {techs.length}/40)</span></label>
           <input 
             id="techs"
-            placeholder="Quais tecnologias usam?"
             value={techs}
+            placeholder="Quais tecnologias usam?"
             onChange={event => setTechs(event.target.value)}
           />
 
           <label htmlFor="price">VALOR DA DIÁRIA * <span>(Deixe em branco para GRATUITO.)</span></label>
           <InputMask 
             id="price"
-            placeholder="Valor cobrado por dia"
-            type="number"
+            mask="999"
+            maskChar=""
             value={price}
+            placeholder="Valor cobrado por dia"
             onChange={event => setPrice(event.target.value)}
           />
 
@@ -121,8 +136,8 @@ export default function Spot ({ history }) {
       </div>
 
       { mensage && (
-        <div className="match-container">
-          <strong>{mensage}</strong>
+        <div className="validation-container">
+          <strong className="mensageError">{mensage}</strong>
           <button type="button" onClick={() => setMensage(null)}>FECHAR</button>
         </div>
       ) }
