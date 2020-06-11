@@ -11,10 +11,12 @@ const io = require('socket.io')(server)
 const connectedUsers = {}
 
 io.on('connection', socket => {
-  const { user_id } = socket.handshake.query
+   const { user_id } = socket.handshake.query
 
-  connectedUsers[user_id] = socket.id
+   connectedUsers[user_id] = socket.id
 });
+
+console.log('oi')
 
 mongoose.connect('mongodb+srv://omnistack:omnistack@cluster0-bbus6.mongodb.net/omnistack9?retryWrites=true&w=majority', {
    useNewUrlParser: true,

@@ -69,6 +69,12 @@ module.exports = {
             if (err) return handleError(err);
         }).set('updatedAt', new Date())
 
+        const bookingUserSocket = req.connectedUsers;
+
+        if (bookingUserSocket) {
+            req.io.emit('spot_update', 'spot_update');
+          }
+
         return res.status(200).send()
     },
     

@@ -8,7 +8,7 @@ import logo from '../../assets/logo.png';
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('marcelbotelho1@hotmail.com');
   // const [email, setEmail] = useState('');
-  const [techs, setTechs] = useState('ReactJS');
+  const [techs, setTechs] = useState('ReactJS, PHP');
   // const [techs, setTechs] = useState('');
 
   function checkTextInput() {

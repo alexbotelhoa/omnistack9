@@ -9,7 +9,8 @@ import api from '../../services/api'
 export default function Dashboard() {
     const [spots, setSpots] = useState([]);
     const [requests, setRequests] = useState([]);
-    const [mensage, setMensage] = useState(null);
+    const [mensageCrudBackend, setMensageCrudBackend] = useState('');
+    const [mensageValidation, setMensageValidation] = useState(null);
 
     const history = useHistory();
     const user_id = localStorage.getItem('user');
@@ -23,6 +24,10 @@ export default function Dashboard() {
         socket.on('booking_request', data => {
             setRequests([...requests, data]);
         })
+
+        socket.on('spot_update', data => {
+            setMensageCrudBackend(data)
+        })
     }, [requests, socket]);
 
     useEffect(() => {     
@@ -34,12 +39,12 @@ export default function Dashboard() {
             setSpots(res.data);
         }
         loadSpots();
-    }, [user_id]);
+    }, [user_id, mensageCrudBackend]);
 
     useEffect(() => {
         function actionCrud() {
-            if (action === 'post') setMensage('Spot criado com sucesso!!!');
-            if (action === 'put') setMensage('Spot alterado com sucesso!!!');
+            if (action === 'post') setMensageValidation('Spot criado com sucesso!!!');
+            if (action === 'put') setMensageValidation('Spot alterado com sucesso!!!');
 
             localStorage.removeItem('action');
         }
@@ -65,7 +70,7 @@ export default function Dashboard() {
             });
         
             setSpots(spots.filter(spot => spot.id !== id));
-            setMensage('Spot deletado com sucesso!!!');
+            setMensageValidation('Spot deletado com sucesso!!!');
         } catch (err) {
             alert('Erro ao tentar deletar o spot, tente novamente!');
         }
@@ -129,10 +134,10 @@ export default function Dashboard() {
                     </div>
                 </div>
 
-                { mensage && (
+                { mensageValidation && (
                     <div className="validation-container">
-                        <strong>{mensage}</strong>
-                        <button type="button" onClick={() => setMensage(null)}>FECHAR</button>
+                        <strong>{mensageValidation}</strong>
+                        <button type="button" onClick={() => setMensageValidation(null)}>FECHAR</button>
                     </div>
                 ) }
             </div>

@@ -59,7 +59,7 @@ export default function Spot ({ history }) {
       }
     }
 
-    history.push(`/dashboard`);
+    // history.push(`/dashboard`);
   };
 
   async function loadSpot() {
