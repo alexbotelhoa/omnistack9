@@ -13,15 +13,17 @@ export default function Spot ({ history }) {
   const [techs, setTechs] = useState('');
   const [price, setPrice] = useState('');
   const [load, setLoad] = useState(false);
-  const spot_id = history.location.pathname.split('/')
+  const [mensage, setMensage] = useState(null);
+  const spot_id = history.location.pathname.split('/');
   const user_id = localStorage.getItem('user');
   
   let preview = useMemo(() => {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
-  }, [thumbnail])
+  }, [thumbnail]);
 
   async function handleSubmit(e) {
     e.preventDefault();
+    let action;
 
     const data = new FormData();
     data.append('thumbnail', thumbnail);
@@ -30,17 +32,21 @@ export default function Spot ({ history }) {
     data.append('price', price);
 
     if (spot_id[2]) {
-      await api.put(`/spots/${spot_id[2]}`, data, {
-        headers: { user_id }
-      })
+      // await api.put(`/spots/${spot_id[2]}`, data, {
+      //   headers: { user_id }
+      // })
+      action = 'put';
     } else {
-      await api.post('/spots', data, {
-        headers: { user_id }
-      })      
+      // await api.post('/spots', data, {
+      //   headers: { user_id }
+      // })    
+      action = 'post';  
     }
 
-    history.push('/dashboard');
-  }
+    history.push(`/dashboard`, {
+      action
+    });
+  };
 
   async function loadSpot() {
     if (load || !spot_id[2]) return;
@@ -55,15 +61,13 @@ export default function Spot ({ history }) {
     setTechs(techs)
     setPrice(price)
     setLoad(true)      
-  }
+  };
   
-  loadSpot()
-
   if (!thumbnail && thumbnailStorage) {
     preview = thumbnailStorage
-  }
+  };
 
-  // console.log(company.length)
+  loadSpot()
 
   return (
     <div className="containerDashboard">
@@ -115,6 +119,13 @@ export default function Spot ({ history }) {
 
         </form>
       </div>
+
+      { mensage && (
+        <div className="match-container">
+          <strong>{mensage}</strong>
+          <button type="button" onClick={() => setMensage(null)}>FECHAR</button>
+        </div>
+      ) }
     </div>
   )
 }

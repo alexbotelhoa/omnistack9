@@ -6,8 +6,17 @@ import styles from './styles';
 import logo from '../../assets/logo.png';
 
 export default function Login({ navigation }) {
-  const [email, setEmail] = useState('');
-  const [techs, setTechs] = useState('');
+  const [email, setEmail] = useState('marcelbotelho1@hotmail.com');
+  // const [email, setEmail] = useState('');
+  const [techs, setTechs] = useState('ReactJS');
+  // const [techs, setTechs] = useState('');
+
+  function checkTextInput() {
+    if (email == '') return alert('Informe seu e-mail!');
+    if (techs == '') return alert('Informe uma tecnologia!');
+
+    handleSubmit()
+  };
 
   async function handleSubmit() {
     const res = await api.post('/sessions', {
@@ -58,7 +67,7 @@ export default function Login({ navigation }) {
           onChangeText={setTechs}
         />
 
-        <TouchableOpacity onPress={handleSubmit} style={styles.button}>
+        <TouchableOpacity onPress={checkTextInput} style={styles.button}>
           <Text style={styles.buttonText}>Encontrar spots</Text>
         </TouchableOpacity>
       </View>

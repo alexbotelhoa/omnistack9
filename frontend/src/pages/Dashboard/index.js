@@ -9,13 +9,16 @@ import api from '../../services/api'
 export default function Dashboard() {
     const [spots, setSpots] = useState([]);
     const [requests, setRequests] = useState([]);
-    const history = useHistory()
+    const [mensage, setMensage] = useState(null);
+
+    const history = useHistory();
+    const { state } = history.location
     const user_id = localStorage.getItem('user');
 
     const socket = useMemo(() => io('http://192.168.1.101:3333', {
         query: { user_id },
-    }), [user_id]);
-  
+    }), [user_id]);   
+
     useEffect(() => {
         socket.on('booking_request', data => {
             setRequests([...requests, data]);
@@ -28,11 +31,20 @@ export default function Dashboard() {
               headers: { user_id }
             })
       
-            setSpots(res.data)
+            setSpots(res.data);
         }
-
-        loadSpots()
+        loadSpots();
     }, [user_id]);
+
+    useEffect(() => {
+        if (state) {
+            if (state.action === 'post') {
+                setMensage('Spot criado com sucesso!!!')
+            } else {
+                setMensage('Spot alterado com sucesso!!!');
+            }
+        } 
+    }, [state])
 
     async function handleAccept(id) {
         await api.post(`/bookings/${id}/approvals`);
@@ -48,24 +60,26 @@ export default function Dashboard() {
 
     async function handleDeleteSpot(id) {
         try {
-          await api.delete(`/spots/${id}`, {
-            headers: { user_id }
-          });
-    
-          setSpots(spots.filter(spot => spot.id !== id))
+            await api.delete(`/spots/${id}`, {
+                headers: { user_id }
+            });
+        
+            setSpots(spots.filter(spot => spot.id !== id));
+            
+            setMensage('Spot deletado com sucesso!!!');
         } catch (err) {
-          alert('Erro ao deletar o caso, tente novamente');
+            alert('Erro ao deletar o caso, tente novamente');
         }
     };
 
     function handleLogout() {
         localStorage.getItem('user');
-        localStorage.clear()
+        localStorage.clear();
         
         history.push('/');
-        window.location.reload(false)
+        window.location.reload(false);
     };
-
+    
     return (
         <>
             <div className="containerDashboard">
@@ -115,6 +129,13 @@ export default function Dashboard() {
                         </Link>
                     </div>
                 </div>
+
+                { mensage && (
+                    <div className="validation-container">
+                        <strong>{mensage}</strong>
+                        <button type="button" onClick={() => setMensage(null)}>FECHAR</button>
+                    </div>
+                ) }
             </div>
         </>
     )

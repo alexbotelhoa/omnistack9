@@ -65,3 +65,35 @@
 .content button.btnLogin:hover {
     background: #e14f50;
 }
+
+.validation-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.validation-container strong {
+    font-size: 26px;
+    color: #34CB79;
+}
+
+.validation-container .mensage-login {
+    color: #cb3434;
+}
+
+.validation-container button {
+    border: 0;
+    background: none;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 18px;
+    margin-top: 30px;
+    cursor: pointer;
+}

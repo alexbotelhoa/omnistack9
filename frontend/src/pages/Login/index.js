@@ -4,11 +4,18 @@ import './styles.css';
 import api from '../../services/api';
 
 export default function Login({ history }) {
-  const [email, setEmail] = useState('alexbotelho1@hotmail.com');
+  const [mensage, setMensage] = useState(null);
+  const [email, setEmail] = useState('');
 
-  async function handleSubmit(e) {
+  function checkInput(e) {
     e.preventDefault();
 
+    if (email === '') return setMensage('Informe o seu e-mail!');
+
+    handleSubmit()
+  };
+
+  async function handleSubmit() {
     const res = await api.post('/sessions', { email });
 
     const { _id } = res.data;
@@ -26,7 +33,7 @@ export default function Login({ history }) {
             Ofereça <strong>spots</strong> para programadores e encontre <strong>talentos</strong> para sua empresa
           </p>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={checkInput}>
             <label htmlFor="email">E-MAIL *</label>
             <input 
               id="email" 
@@ -39,6 +46,13 @@ export default function Login({ history }) {
           </form>
           
         </div>
+
+        { mensage && (
+          <div className="validation-container">
+            <strong className="mensage-login">{mensage}</strong>
+            <button type="button" onClick={() => setMensage(null)}>FECHAR</button>
+          </div>
+        ) }
       </div>
     </>
   )
