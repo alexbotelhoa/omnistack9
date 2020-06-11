@@ -8,12 +8,13 @@ import api from '../../services/api'
 
 export default function Dashboard() {
     const [spots, setSpots] = useState([]);
+    // const [action, setAction] = useState(true);
     const [requests, setRequests] = useState([]);
     const [mensage, setMensage] = useState(null);
 
     const history = useHistory();
-    const { state } = history.location
     const user_id = localStorage.getItem('user');
+    const action = localStorage.getItem('action');
 
     const socket = useMemo(() => io('http://192.168.1.101:3333', {
         query: { user_id },
@@ -37,14 +38,14 @@ export default function Dashboard() {
     }, [user_id]);
 
     useEffect(() => {
-        if (state) {
-            if (state.action === 'post') {
-                setMensage('Spot criado com sucesso!!!')
-            } else {
-                setMensage('Spot alterado com sucesso!!!');
-            }
-        } 
-    }, [state])
+        function actionCrud() {
+            if (action === 'post') setMensage('Spot criado com sucesso!!!');
+            if (action === 'put') setMensage('Spot alterado com sucesso!!!');
+
+            localStorage.removeItem('action');
+        }
+        actionCrud()        
+    }, [action]);
 
     async function handleAccept(id) {
         await api.post(`/bookings/${id}/approvals`);

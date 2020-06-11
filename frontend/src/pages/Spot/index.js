@@ -32,15 +32,15 @@ export default function Spot ({ history }) {
     data.append('price', price);
 
     if (spot_id[2]) {
-      // await api.put(`/spots/${spot_id[2]}`, data, {
-      //   headers: { user_id }
-      // })
-      action = 'put';
+      await api.put(`/spots/${spot_id[2]}`, data, {
+        headers: { user_id }
+      })
+      localStorage.setItem('action', 'put')
     } else {
-      // await api.post('/spots', data, {
-      //   headers: { user_id }
-      // })    
-      action = 'post';  
+      await api.post('/spots', data, {
+        headers: { user_id }
+      })    
+      localStorage.setItem('action', 'post')
     }
 
     history.push(`/dashboard`, {
