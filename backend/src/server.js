@@ -16,8 +16,6 @@ io.on('connection', socket => {
    connectedUsers[user_id] = socket.id
 });
 
-console.log('oi')
-
 mongoose.connect('mongodb+srv://omnistack:omnistack@cluster0-bbus6.mongodb.net/omnistack9?retryWrites=true&w=majority', {
    useNewUrlParser: true,
    useUnifiedTopology: true,

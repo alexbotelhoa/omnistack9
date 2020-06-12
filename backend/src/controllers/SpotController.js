@@ -1,12 +1,12 @@
-const Spot = require('../models/Spot')
-const User = require('../models/User')
+const Spot = require('../models/Spot');
+const User = require('../models/User');
 
 module.exports = {
     async index(req, res) {
-        const { tech } = req.query
-        const spots = await Spot.find({ techs: tech })
+        const { tech } = req.query;
+        const spots = await Spot.find({ techs: tech });
 
-        return res.json(spots)
+        return res.json(spots);
     },
 
     async store(req, res) {
@@ -25,16 +25,19 @@ module.exports = {
             user: user_id,
          }, function (err) {
             if (err) return handleError(err);
-        })
+        });
 
-        return res.json(spot)
+        const bookingUserSocket = req.connectedUsers;
+        if (bookingUserSocket) req.io.emit('spotCrud', 'upload');
+
+        return res.json(spot);
     },
 
     async edit(req, res) {
-        const { spot_id } = req.params
-        const spot = await Spot.findById(spot_id)
+        const { spot_id } = req.params;
+        const spot = await Spot.findById(spot_id);
 
-        return res.json(spot)
+        return res.json(spot);
     },
 
     async update(req, res) {
@@ -56,9 +59,9 @@ module.exports = {
                     company, 
                     price, 
                     techs: techs.split(',').map(tech => tech.trim()),
-                })
-            }
-        }
+                });
+            };
+        };
 
         await Spot.updateOne({
             _id: spot_id,
@@ -67,20 +70,17 @@ module.exports = {
         fileExist(), 
         function (err) {
             if (err) return handleError(err);
-        }).set('updatedAt', new Date())
+        }).set('updatedAt', new Date());
 
         const bookingUserSocket = req.connectedUsers;
+        if (bookingUserSocket) req.io.emit('spotCrud', 'upload');
 
-        if (bookingUserSocket) {
-            req.io.emit('spot_update', 'spot_update');
-          }
-
-        return res.status(200).send()
+        return res.status(200).send();
     },
     
     async delete(req, res) {
-        const { spot_id } = req.params
-        const { user_id } = req.headers
+        const { spot_id } = req.params;
+        const { user_id } = req.headers;
 
         await Spot.deleteOne({ 
             _id: spot_id,
@@ -88,6 +88,9 @@ module.exports = {
         }, function (err) {
             if (err) return handleError(err);
         });
+
+        const bookingUserSocket = req.connectedUsers;
+        if (bookingUserSocket) req.io.emit('spotCrud', 'upload');
 
         return res.status(204).send();
     }

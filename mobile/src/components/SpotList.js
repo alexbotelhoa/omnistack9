@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { withNavigation } from 'react-navigation';
 import { View, Text, FlatList, Image, AsyncStorage, TouchableOpacity } from 'react-native';
 import socketio from 'socket.io-client'
@@ -10,17 +10,17 @@ function SpotList({ tech, navigation }) {
   const [mensageCrudBackend, setMensageCrudBackend] = useState('');  
   const [spots, setSpots] = useState([]);
 
-  const user_id = AsyncStorage.getItem('user');
-
-  const socket = useMemo(() => socketio('http://192.168.1.101:3333', {
-    query: { user_id },
-  }), [user_id]);
-
   useEffect(() => {
-    socket.on('spot_update', data => {
-        setMensageCrudBackend(data)
+    AsyncStorage.getItem('user').then(user_id => {
+      const socket = socketio('http://192.168.1.101:3333', {
+        query: { user_id }
+      })
+
+      socket.on('spotCrud', data => {
+          setMensageCrudBackend(data)
+      })
     })
-  }, [socket]);
+  }, []);
 
   useEffect(() => {
     async function loadSpots() {
@@ -32,7 +32,7 @@ function SpotList({ tech, navigation }) {
     }
 
     loadSpots();
-  }, [user_id, mensageCrudBackend]);
+  }, [mensageCrudBackend]);
 
   function handleNavigate(id) {
     navigation.navigate('Book', { id });

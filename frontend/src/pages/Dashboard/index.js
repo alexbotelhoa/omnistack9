@@ -25,7 +25,7 @@ export default function Dashboard() {
             setRequests([...requests, data]);
         })
 
-        socket.on('spot_update', data => {
+        socket.on('spotCrud', data => {
             setMensageCrudBackend(data)
         })
     }, [requests, socket]);
