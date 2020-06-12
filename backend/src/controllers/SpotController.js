@@ -28,7 +28,7 @@ module.exports = {
         });
 
         const bookingUserSocket = req.connectedUsers;
-        if (bookingUserSocket) req.io.emit('spotCrud', 'upload');
+        if (bookingUserSocket) req.io.emit('spotCrud');
 
         return res.json(spot);
     },
@@ -73,7 +73,7 @@ module.exports = {
         }).set('updatedAt', new Date());
 
         const bookingUserSocket = req.connectedUsers;
-        if (bookingUserSocket) req.io.emit('spotCrud', 'upload');
+        if (bookingUserSocket) req.io.emit('spotCrud', true);
 
         return res.status(200).send();
     },
@@ -90,7 +90,7 @@ module.exports = {
         });
 
         const bookingUserSocket = req.connectedUsers;
-        if (bookingUserSocket) req.io.emit('spotCrud', 'upload');
+        if (bookingUserSocket) req.io.emit('spotCrud');
 
         return res.status(204).send();
     }

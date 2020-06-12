@@ -9,7 +9,7 @@ import api from '../../services/api'
 export default function Dashboard() {
     const [spots, setSpots] = useState([]);
     const [requests, setRequests] = useState([]);
-    const [mensageCrudBackend, setMensageCrudBackend] = useState('');
+    const [mensageCrudBackend, setMensageCrudBackend] = useState(false);
     const [mensageValidation, setMensageValidation] = useState(null);
 
     const history = useHistory();
@@ -25,8 +25,8 @@ export default function Dashboard() {
             setRequests([...requests, data]);
         })
 
-        socket.on('spotCrud', data => {
-            setMensageCrudBackend(data)
+        socket.on('spotCrud', date => {
+            setMensageCrudBackend(date)
         })
     }, [requests, socket]);
 
@@ -39,6 +39,7 @@ export default function Dashboard() {
             setSpots(res.data);
         }
         loadSpots();
+        setMensageCrudBackend(false)
     }, [user_id, mensageCrudBackend]);
 
     useEffect(() => {

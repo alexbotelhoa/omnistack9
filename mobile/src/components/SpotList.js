@@ -7,7 +7,7 @@ import styles from './styles';
 import api from '../services/api';
 
 function SpotList({ tech, navigation }) {
-  const [mensageCrudBackend, setMensageCrudBackend] = useState('');  
+  const [mensageCrudBackend, setMensageCrudBackend] = useState(false);  
   const [spots, setSpots] = useState([]);
 
   useEffect(() => {
@@ -16,8 +16,8 @@ function SpotList({ tech, navigation }) {
         query: { user_id }
       })
 
-      socket.on('spotCrud', data => {
-          setMensageCrudBackend(data)
+      socket.on('spotCrud', date => {
+        setMensageCrudBackend(date)
       })
     })
   }, []);
@@ -32,6 +32,7 @@ function SpotList({ tech, navigation }) {
     }
 
     loadSpots();
+    setMensageCrudBackend(false)
   }, [mensageCrudBackend]);
 
   function handleNavigate(id) {

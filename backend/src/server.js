@@ -8,13 +8,23 @@ const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
 
-const connectedUsers = {}
+const connectedUsers = {};
 
 io.on('connection', socket => {
    const { user_id } = socket.handshake.query
 
    connectedUsers[user_id] = socket.id
+
+   console.log(`user_id: ${user_id}`, 'Socket:', connectedUsers[user_id])
 });
+
+// const connectCounter = {};
+
+// io.on('connect', function() { 
+//    connectCounter++; 
+
+// });
+
 
 mongoose.connect('mongodb+srv://omnistack:omnistack@cluster0-bbus6.mongodb.net/omnistack9?retryWrites=true&w=majority', {
    useNewUrlParser: true,
