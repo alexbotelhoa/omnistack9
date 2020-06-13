@@ -11,6 +11,12 @@ export default StyleSheet.create({
       marginBottom: 8,
       marginTop: 30,
     },
+
+    formatData: {
+      fontSize: 12,
+      color: '#999',
+      marginBottom: 5
+    },
   
     input: {
       borderWidth: 1,
@@ -41,4 +47,5 @@ export default StyleSheet.create({
       fontWeight: 'bold',
       fontSize: 16,
     },
+
   });

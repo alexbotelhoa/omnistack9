@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { SafeAreaView, Alert, TextInput, TouchableOpacity, AsyncStorage, Text } from 'react-native';
+import { TextInputMask } from 'react-native-masked-text';
 
 import styles from './styles';
 import api from '../../services/api';
 
 export default function Book({ navigation }) {
   const [date, setDate] = useState('');
+  const [state, setState] = useState('');
   const id = navigation.getParam('id');
 
   async function handleSubmit() {
@@ -29,15 +31,20 @@ export default function Book({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.label}>DATA DE INTERESSE *</Text>
-      <TextInput
+      <Text style={styles.formatData}>(DD/MM/AAAA)</Text>
+      <TextInputMask
         style={styles.input}
         placeholder="Qual data você quer reservar?"
-        placeholderTextColor="#999"
-        autoCapitalize="words"
-        autoCorrect={false}
+        type={'datetime'}
+        options={{
+          format: 'DD/MM/YYYY'
+        }}
         value={date}
-        onChangeText={setDate}
+        onChangeText={date => {
+          setDate(date)
+        }}
       />
+
 
       <TouchableOpacity onPress={handleSubmit} style={styles.button}>
         <Text style={styles.buttonText}>Solicitar reserva</Text>
