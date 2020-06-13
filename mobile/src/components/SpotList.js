@@ -33,7 +33,7 @@ function SpotList({ tech, navigation }) {
 
     loadSpots();
     setMensageCrudBackend(false)
-  }, [mensageCrudBackend]);
+  }, [spots, mensageCrudBackend]);
 
   function handleNavigate(id) {
     navigation.navigate('Book', { id });
