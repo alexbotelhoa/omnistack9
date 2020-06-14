@@ -13,8 +13,6 @@ const connectedUsers = {};
 io.on('connection', socket => {
    const { user_id } = socket.handshake.query;
    connectedUsers[user_id] = socket.id;
-
-   console.log(`user_id: ${user_id}`, 'Socket:', connectedUsers[user_id]);
 });
 
 mongoose.connect('mongodb+srv://omnistack:omnistack@cluster0-bbus6.mongodb.net/omnistack9?retryWrites=true&w=majority', {
@@ -27,7 +25,6 @@ app.use((req, res, next) => {
    req.io = io;
    req.connectedUsers = connectedUsers;
 
-   console.log(connectedUsers);
    return next();
 })
 
