@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center">
-  🚀 Semana OmniStack 9.0
+  🚀  Semana OmniStack 9.0
 </h4>
 
 <p align="center">
@@ -38,7 +38,7 @@
 </p>
 
 <p align="center">
-  <img alt="Frontend" src="https://user-images.githubusercontent.com/44276302/82372999-4875be00-99f3-11ea-8709-d184d8f16b5e.png" width="100%">
+  <img alt="Frontend" src="https://user-images.githubusercontent.com/44276302/84593694-cf1b9080-ae23-11ea-9ceb-251a00966360.jpg" width="100%">
 </p>
 
 ## :rocket: Tecnologias
