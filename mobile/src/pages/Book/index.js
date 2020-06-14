@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { SafeAreaView, Alert, TextInput, TouchableOpacity, AsyncStorage, Text } from 'react-native';
+import { SafeAreaView, Alert, TouchableOpacity, AsyncStorage, Text } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
 
 import styles from './styles';
 import api from '../../services/api';
 
 export default function Book({ navigation }) {
-  const [date, setDate] = useState('');
-  const [state, setState] = useState('');
+  const [date, setDate] = useState('10/10/2020');
   const id = navigation.getParam('id');
 
   async function handleSubmit() {
@@ -44,7 +43,6 @@ export default function Book({ navigation }) {
           setDate(date)
         }}
       />
-
 
       <TouchableOpacity onPress={handleSubmit} style={styles.button}>
         <Text style={styles.buttonText}>Solicitar reserva</Text>

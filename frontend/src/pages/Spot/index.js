@@ -33,8 +33,6 @@ export default function Spot ({ history }) {
   };
 
   async function handleSubmit() {
-    // e.preventDefault();
-
     const data = new FormData();
     data.append('thumbnail', thumbnail);
     data.append('company', company);
