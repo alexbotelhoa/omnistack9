@@ -23,8 +23,8 @@
 </p>
 
 <p align="center">
-    <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#computer-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#computer_mouse-backend">Backend</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#computer-frontend">Frontend</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
     <a href="#iphone-mobile">Mobile</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -40,6 +40,11 @@
 <p align="center">
   <img alt="Frontend" src="https://user-images.githubusercontent.com/44276302/84593694-cf1b9080-ae23-11ea-9ceb-251a00966360.jpg" width="100%">
 </p>
+
+## :computer: Projeto
+
+O Aircnc é um projeto que visa conectar empresas que querem abrir spots e desenvolvedores que procuram um lugar para trocar ideias com devs, conhecer a empresa e trabalhar lá por um período.
+## :information_source: Desenvolvimento
 
 ## :rocket: Tecnologias
 
@@ -65,11 +70,6 @@
 -  [React Expo](https://expo.io/)
 -  [React Navigation](https://reactnavigation.org/)
 -  [React Location](https://docs.expo.io/versions/latest/sdk/location)
-
-## :computer: Projeto
-
-O Aircnc é um projeto que visa conectar empresas que querem abrir spots e desenvolvedores que procuram um lugar para trocar ideias com devs, conhecer a empresa e trabalhar lá por um período.
-## :information_source: Desenvolvimento
 
 ### :computer_mouse: Backend: 
 
